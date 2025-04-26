@@ -44,17 +44,17 @@ def pair(values):
         return ['B'] + vals
     if type == [3,1,1]:
         temp = vals[1:]
-        temp.sort(reverse = 'True')
+        temp.sort(reverse = True)
         return ['T', vals[0]] + temp
     if type == [2,2,1]:
         temp = vals[:-1]
-        temp.sort(reverse = 'True')
+        temp.sort(reverse = True)
         return ['TP'] + temp + [vals[2]]
     if type == [2,1,1,1]:
         temp = vals[1:]
-        temp.sort(reverse = 'True')
+        temp.sort(reverse = True)
         return ['P', vals[0]] + temp
-    vals.sort(reverse = 'True')
+    vals.sort(reverse = True)
     return ['HC'] + vals
 
 def value_aux(cards):
@@ -99,7 +99,8 @@ def value(cards):
     
 def compare(v1, v2):
     '''Takes hand strengths and compare. Return True if hand 1 wins'''
-    for i in range(10):
+    l = min(len(v1),len(v2))
+    for i in range(l):
         if v1[i]!=v2[i]:
             return v1[i]>v2[i]
     return True
