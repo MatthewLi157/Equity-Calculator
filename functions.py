@@ -57,10 +57,10 @@ def pair(values):
     vals.sort(reverse = 'True')
     return ['HC'] + vals
 
-def value_aux(s):
-    '''takes string input of hand and returns hand value as list [hand type, rank(s)]'''
+def value_aux(cards):
+    '''takes cards and returns hand value as list [hand type, rank(s)]'''
     # HC, P, TP, T, S, F, B, Q, SF
-    cards = s.split(" ")
+    # cards = s.split(" ")
     values = [c[0] for c in cards]
     values = [convert(v) for v in values]
     values.sort()
@@ -91,18 +91,14 @@ def type_conv(type):
     D = {'HC':1, 'P':2, 'TP':3, 'T':4, 'S':5, 'F':6, 'B':7, 'Q':8, 'SF':9}
     return D[type]
     
-def value(s):
+def value(cards):
     '''Applies aux and converts hand type chars to values, HC = 1..., SF = 9'''
-    temp = value_aux(s)
+    temp = value_aux(cards)
     temp[0] = type_conv(temp[0])
     return temp
     
-def compare(s):
-    '''Takes string, splits in 2 hands and compare. Return True if player 1 wins'''
-    s1 = s[:14]
-    s2 = s[15:]
-    v1 = value(s1)
-    v2 = value(s2)
+def compare(v1, v2):
+    '''Takes hand strengths and compare. Return True if hand 1 wins'''
     for i in range(10):
         if v1[i]!=v2[i]:
             return v1[i]>v2[i]
